@@ -7,6 +7,7 @@ if (Sys.getenv("Run_gtrendsR_Tests")=="yes") {
     stopifnot(file.exists("~/.Rprofile"))
     
     library(gtrendsR)
+    gconnect()
 
     res <- gtrends(c("NHL", "NBA", "MLB", "MLS"))
     print(summary(res))
