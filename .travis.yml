@@ -6,9 +6,9 @@ sudo: required
 
 dist: trusty
 
-#env:
-#  global:
-#    - Run_gtrendsR_Tests="yes"
+env:
+  global:
+    - Run_gtrendsR_Tests="yes"
 
 before_install:
   # decrypt the file .Rprofile containing a login and password
