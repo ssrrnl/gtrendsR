@@ -4,7 +4,9 @@ if (Sys.getenv("Run_gtrendsR_Tests")=="yes") {
     ## password Otherwise we would have to hardcode then, and that is not something one
     ## should store in a code repository.
 
-    stopifnot(file.exists("~/.Rprofile"))
+    ##stopifnot(file.exists("~/.Rprofile"))
+    stopifnot(file.exists("/tmp/dot.Rprofile"))
+    source("/tmp/dot.Rprofile")
     
     library(gtrendsR)
     gconnect()
