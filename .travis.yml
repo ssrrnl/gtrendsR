@@ -6,9 +6,18 @@ sudo: required
 
 dist: trusty
 
+env:
+  global:
+    - Run_gtrendsR_Tests="yes"
+
 before_install:
+  # decrypt the file .Rprofile containing a login and password
+  # decryption relies on a key know only to Travis, and inactive in a fork so content cannot spill
+  # still, the .Rprofile only contains a one-off GMail account and password and no keys to Fort Knox
+  - openssl aes-256-cbc -K $encrypted_988d19a907a0_key -iv $encrypted_988d19a907a0_iv -in .Rprofile.enc -out ~/.Rprofile -d
+  # get Travis helper script and make it executable
   - curl -OLs https://eddelbuettel.github.io/r-travis/run.sh && chmod 0755 run.sh
-  # if needed, add our launchpad repo 
+  # if need be, add our launchpad repo 
   # - sudo add-apt-repository -y ppa:edd/misc
   - ./run.sh bootstrap
 
