@@ -71,7 +71,12 @@ get_widget <- function(comparison_item, category, gprop, hl) {
   
   url <- encode_keyword(url)
   
-  widget <- curl::curl_fetch_memory(url)
+  h <- new_handle()
+  req <- curl_fetch_memory("http://apis.google.com/Cookies/OTZ", handle = h)
+  handle_cookies(h)
+
+  
+  widget <- curl::curl_fetch_memory(url, h) # note that the second argument, h, is the cookie handler
 
   stopifnot(widget$status_code == 200)
 
